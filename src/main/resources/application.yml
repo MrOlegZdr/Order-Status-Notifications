@@ -1,0 +1,37 @@
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: ordernotifications
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      properties:
+        max.poll.records: 1
+    listener:
+      ack-mode: manual
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notifications
+    username: ${PG_USERNAME}
+    password: ${PG_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    host: localhost
+    port: 1025
+    username:
+    password:
+      properties:
+        mail:
+          smtp:
+            auth: false
+            starttls:
+              enable: false
+logging:
+  level:
+    root: INFO

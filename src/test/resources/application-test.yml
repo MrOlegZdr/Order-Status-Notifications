@@ -1,0 +1,53 @@
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: ordernotifications
+
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    platform: h2
+#    initialization-mode: always
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  mail:
+    host: localhost
+    port: 1025
+    username: test
+    password: test
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    listener:
+      pause: true
+    consumer:
+      group-id: test-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+    producer:
+      retries: 3
+
+  test:
+    mail:
+      enabled: false  # Turn off real mail send
+
+logging:
+  level:
+    root: WARN
+    org.springframework.test: DEBUG
