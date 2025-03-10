@@ -14,7 +14,7 @@ spring:
     listener:
       ack-mode: manual
   datasource:
-    url: jdbc:postgresql://localhost:5432/notifications
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/notifications}
     username: ${PG_USERNAME}
     password: ${PG_PASSWORD}
   jpa:
